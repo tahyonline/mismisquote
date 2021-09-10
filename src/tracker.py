@@ -3,7 +3,7 @@
 
 import logging as l
 
-from utils import _or
+from .utils import _or
 
 
 class MMQTracker:

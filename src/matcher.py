@@ -1,8 +1,8 @@
 import logging as l
 from typing import Callable
 
-from tracker import MMQTracker
-from vector import MMQVectors
+from .tracker import MMQTracker
+from .vector import MMQVectors
 
 
 class MisMisQuote:
