@@ -6,8 +6,9 @@ A library to find potenitally misspelt or misworded text from a body of referenc
 
 ## Shift-And Algorithm
 
-Loosely based on the 'shift-and' algorithm for text matching. This algorithm is originally
-uses a bitmap, i.e., a processor register, to represent how far we have matched the
+MisMisQuote is loosely based on the 'shift-and' algorithm for text matching.
+
+The 'shift-and' algorithm uses a bitmap, i.e., a processor register, to represent how far we have matched the
 search string to the reference string.
 
 At each new character, we _shift_ the bitmap towards the more significant bits and put a 1 in
