@@ -204,7 +204,11 @@ class MMQVectors:
                     'locmap': [0.0] * len(self.items),
                     'mmq': None
                 }
-                if isinstance(item, str) and len(item) > 1:
+                if isinstance(item, str) and len(item) > 1 and (
+                    self.allowed_differences > 0 or
+                    self.nomatch_multiplier > 0.0 or
+                    self.threshold < 1.0
+                ):
                     self.vectors[item]['mmq'] = MisMisQuote(
                         list(item),
                         allowed_differences=self.allowed_differences,
