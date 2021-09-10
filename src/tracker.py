@@ -46,39 +46,43 @@ class MMQTracker:
 
         self.tracker = []
 
-    def match(self, matches: list) -> float:
-        """Update the tracker with the latest matches
+    def shiftand(self, locmap: list) -> float:
+        """Update the tracker with the locmap
 
-        The matches list must be a list of bools and
+        The locmap list must be a list of bools and
         the less than or the same length as set in init
+
+        Presumably, the locmap will come from the
+        MMQVectors object that has the location maps
+        for each item
 
         Args:
 
-            matches (list): list of matches
+            locmap (list): list of locmap
 
         Raises:
 
-            ValueError: matches list is not the same length
+            ValueError: locmap list is not the same length
 
         Returns:
 
             float: level of last match, null if too early
         """
-        if len(matches) != self.length:
-            raise ValueError("matches list has length %d different than set before %d" % (
-                len(matches), self.length
+        if len(locmap) != self.length:
+            raise ValueError("locmap list has length %d different than set before %d" % (
+                len(locmap), self.length
             ))
 
         newtracker = self._and_tracker(
             # shift the last tracker
             self._shift_last_tracker(),
-            # 'and' with the matches
-            matches
+            # 'and' with the locmap
+            locmap
         )
 
         self.tracker.append(newtracker)
 
-        l.debug("      tracker match {}: {}".format(matches, newtracker))
+        l.debug("      tracker match {}: {}".format(locmap, newtracker))
 
         score = newtracker[0]
 
@@ -90,12 +94,12 @@ class MMQTracker:
                     alttracker = self._and_tracker(
                         # shift the historic tracker
                         self._shift_old_tracker(j),
-                        # 'and' with the matches
-                        matches
+                        # 'and' with the locmap
+                        locmap
                     )
                     score = _or(score, alttracker[0], j)
                     l.debug("      alt tracker {} {}: {}".format(
-                        j, matches, alttracker))
+                        j, locmap, alttracker))
 
         return score
 

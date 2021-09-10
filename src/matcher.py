@@ -56,8 +56,8 @@ class MisMisQuote:
         self.allowed_differences = allowed_differences
         self.nomatch_multiplier = nomatch_multiplier
 
-    def match_items(self, reference_items: list) -> list:
-        """Match to a reference sequence
+    def find_in(self, reference_items: list) -> list:
+        """Find the search sequence in the reference provided
 
         Return a list of full and potential matches,
         if any
@@ -88,7 +88,7 @@ class MisMisQuote:
         results = []
 
         for i in range(0, len(reference_items)):
-            score = tracker.match(
+            score = tracker.shiftand(
                 self.vectors.get_matches(reference_items[i])
             )
             results.append((i, score))
@@ -133,25 +133,25 @@ Id aliquet lectus proin nibh nisl. Aenean sed adipiscing diam donec adipiscing t
 
     l.info("**********************************\nTest case 1: full matching in long reference")
     lorem = MisMisQuote(to_find_items)
-    results = lorem.match_items(reference_items)
+    results = lorem.find_in(reference_items)
     l.info("Results: {}".format(results))
 
     l.info("**********************************\nTest case 2: fuzzy match multiplier 0.5, long reference")
     lorem = MisMisQuote(to_find_items, nomatch_multiplier=0.5, threshold=0.5)
-    results = lorem.match_items(reference_items)
+    results = lorem.find_in(reference_items)
     l.info("Results: {}".format(results))
 
     l.info("**********************************\nTest case 3: fuzzy match multiplier 0.5, short reference")
     lorem = MisMisQuote(to_find_items, nomatch_multiplier=0.5, threshold=0.5)
-    results = lorem.match_items(short_reference_items)
+    results = lorem.find_in(short_reference_items)
     l.info("Results: {}".format(results))
 
     l.info("**********************************\nTest case 4: fuzzy match 1 allowed difference, long reference")
     lorem = MisMisQuote(to_find_items, allowed_differences=1, threshold=0.5)
-    results = lorem.match_items(reference_items)
+    results = lorem.find_in(reference_items)
     l.info("Results: {}".format(results))
 
     l.info("**********************************\nTest case 5: fuzzy match 1 allowed difference, short reference")
     lorem = MisMisQuote(to_find_items, allowed_differences=1, threshold=0.5)
-    results = lorem.match_items(short_reference_items)
+    results = lorem.find_in(short_reference_items)
     l.info("Results: {}".format(results))
