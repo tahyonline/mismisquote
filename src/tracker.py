@@ -22,6 +22,7 @@ class MMQTracker:
             ValueError: length <= 0
             ValueError: allowed_differences < 0
             ValueError: nomatch_multiplier < 0.0 or >= 1.0
+            ValueError: threshold < 0.0 or > 1.0
         """
 
         if length <= 0:

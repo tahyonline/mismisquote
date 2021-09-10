@@ -36,6 +36,7 @@ class MisMisQuote:
             ValueError: length <= 0
             ValueError: allowed_differences < 0
             ValueError: nomatch_multiplier < 0.0 or >= 1.0
+            ValueError: threshold < 0.0 or > 1.0
         """
         if items is None or len(items) == 0:
             raise ValueError("items list empty")
@@ -89,7 +90,7 @@ class MisMisQuote:
 
         for i in range(0, len(reference_items)):
             score = tracker.shiftand(
-                self.vectors.get_matches(reference_items[i])
+                self.vectors.get_locmap(reference_items[i])
             )
             results.append((i, score))
             if score >= self.threshold:
