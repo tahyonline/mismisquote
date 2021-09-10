@@ -18,18 +18,21 @@ Then we _and_ the bitmap with the pre-calculated bitmaps of where that particula
 comes up in the search string.
 
 So, if we have matched 4 characters so far, then, after the _shift_ we will have a 1 bit
-in the 5^th^ position. Now if the current character matches, then we should have a 1 bit
+in the 5<sup>th</sup> position. Now if the current character matches, then we should have a 1 bit
 in the character's bitmap, too, so the bit would 'survive' the _and_ and continue
 to 'bubble up'.
 
 We have a match if we have a 1 in the n^th^ bit, where n is the length of the search string.
+
+> Note: if you have a good reference for this algorithm, please let me know. I have used it
+> about 20 years ago and back then it was easy to find.
 
 ## Floats instead of Bits
 
 To be able to score fuzzy matches, we use lists of floats to represent the bitmap, so
 at each position we can track not just full matches, but partial matches, too.
 
-When we have some positive number in the n^th^ position, we know that we have found
+When we have some positive number in the n<sup>th</sup> position, we know that we have found
 'something' and the score gives an idea how good the match is.
 
 The threshold can be set to limit the quality of matches to the desired higher or
