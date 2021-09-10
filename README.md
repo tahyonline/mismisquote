@@ -22,7 +22,7 @@ in the 5<sup>th</sup> position. Now if the current character matches, then we sh
 in the character's bitmap, too, so the bit would 'survive' the _and_ and continue
 to 'bubble up'.
 
-We have a match if we have a 1 in the n^th^ bit, where n is the length of the search string.
+We have a match if we have a 1 in the n<sup>th</sup> bit, where n is the length of the search string.
 
 > Note: if you have a good reference for this algorithm, please let me know. I have used it
 > about 20 years ago and back then it was easy to find.
