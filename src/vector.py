@@ -44,7 +44,7 @@ class MMQVectors:
                 self.vectors[item] = [False] * len(self.items)
             self.vectors[item][i] = True
 
-    def get_matches(self, item) -> list:
+    def get_locmap(self, item) -> list:
         """Get a list of matches for the item
 
         The list of matches is the same
@@ -53,9 +53,11 @@ class MMQVectors:
         the item is present
 
         Args:
+
             item (Any): the item to find
 
         Returns:
+
             list: list of bools
         """
         if item in self.vectors:
