@@ -4,6 +4,12 @@
 
 A library to find potenitally misspelt or misworded text from a body of reference texts
 
+## Status
+
+Proof of Concept (PoC) stage.
+
+Top next step required: Optimisation is required for multi-layer (i.e., words of the sentence and letters of the word) mode currently in the `two-layer-fuzzy` branch.
+
 ## Shift-And Algorithm
 
 MisMisQuote is loosely based on the 'shift-and' algorithm for text matching.
